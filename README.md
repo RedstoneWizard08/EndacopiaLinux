@@ -13,6 +13,12 @@ and this script automates it all! Just download and run.
 curl -fsSL https://github.com/RedstoneWizard08/EndacopiaLinux/raw/main/install.sh | bash
 ```
 
+Then set your steam launch command to:
+
+```sh
+Linux/wrapper.sh %command%
+```
+
 And you're done!
 
 ## Why?

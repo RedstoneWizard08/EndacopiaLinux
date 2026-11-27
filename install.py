@@ -3,6 +3,7 @@
 
 import os
 import sys
+import stat
 import shutil
 import hashlib
 import tarfile
@@ -272,7 +273,7 @@ def install_agsshell() -> None:
     shutil.copyfile(so32, so32_out)
 
 
-LAUNCHER = '''
+LAUNCHER = """
 #!/bin/sh
 scriptpath=$(readlink -f "$0")
 scriptdir=$(dirname "$scriptpath")
@@ -295,12 +296,23 @@ if [ "$(uname -m)" = "x86_64" ]; then
 else
     ALLEGRO_MODULES="$scriptdir/data/lib32" "$scriptdir/data/ags32" "$@" "$datadir"
 fi
-'''
+"""
+
+WRAPPER = """
+#!/bin/bash
+
+total=$#
+args=("${@:1:total-3}")
+pwd="$(dirname "$(realpath "$0")")"
+
+"${args[@]}" bash "$pwd/Endacopia"
+"""
 
 
 def install_launcher() -> None:
     steam_appid_path = os.path.join(out_dir, "steam_appid.txt")
     launcher_path = os.path.join(out_dir, "Endacopia")
+    wrapper_path = os.path.join(out_dir, "wrapper.sh")
 
     log_step("Installing launcher files...")
 
@@ -313,6 +325,25 @@ def install_launcher() -> None:
 
     with open(launcher_path, "w") as f:
         f.write(LAUNCHER.strip() + "\n")
+
+    print("   \x1b[0;95mCreating wrapper...\x1b[0m")
+
+    with open(wrapper_path, "w") as f:
+        f.write(WRAPPER.strip() + "\n")
+
+    current_mode = os.stat(wrapper_path).st_mode
+
+    # chmod a+rx
+    os.chmod(
+        wrapper_path,
+        current_mode
+        | stat.S_IRUSR
+        | stat.S_IXUSR
+        | stat.S_IRGRP
+        | stat.S_IXGRP
+        | stat.S_IROTH
+        | stat.S_IXOTH,
+    )
 
     print("   \x1b[0;95mRemoving old files...\x1b[0m")
 
