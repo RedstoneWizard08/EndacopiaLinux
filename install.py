@@ -281,7 +281,7 @@ datadir="$scriptdir/../Data"
 
 for arg; do
     if [ "$arg" = "--help" ]; then
-        printf "Usage: %s [<ags options>]\n\n" "$(basename "$0")"
+        printf "Usage: %s [<ags options>]\\n\\n" "$(basename "$0")"
         break
     fi
 done
