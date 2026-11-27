@@ -1,8 +1,11 @@
 # Endacopia on Linux
 
-Endacopia actually works perfectly well on Linux, as long as you have the Linux build of Adventure Game Studio to run it with. Just give it the data files and go!
+Endacopia actually works perfectly well on Linux, as long as you have the Linux
+build of Adventure Game Studio to run it with. Just give it the data files and
+go!
 
-Obviously there's more to it - steam integration, whatever it uses agsshell for, and this script automates it all! Just download and run.
+Obviously there's more to it - steam integration, whatever it uses agsshell for,
+and this script automates it all! Just download and run.
 
 ## Install
 
@@ -11,3 +14,13 @@ curl -fsSL https://github.com/RedstoneWizard08/EndacopiaLinux/raw/main/install.s
 ```
 
 And you're done!
+
+## Why?
+
+Because I can.
+
+## Did you use any AI or LLMs?
+
+Nope! This is hand-written, as all good artisanal software (or random projects)
+should be. AI has its uses, and can be an incredibly useful tool, but that's not
+a topic for here.
