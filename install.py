@@ -272,7 +272,7 @@ def install_agsshell() -> None:
     shutil.copyfile(so32, so32_out)
 
 
-LAUNCHER = """
+LAUNCHER = '''
 #!/bin/sh
 scriptpath=$(readlink -f "$0")
 scriptdir=$(dirname "$scriptpath")
@@ -295,7 +295,7 @@ if [ "$(uname -m)" = "x86_64" ]; then
 else
     ALLEGRO_MODULES="$scriptdir/data/lib32" "$scriptdir/data/ags32" "$@" "$datadir"
 fi
-"""
+'''
 
 
 def install_launcher() -> None:
